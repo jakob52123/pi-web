@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; font-src 'none'; img-src 'none'; connect-src 'none'">
+<title>Optional skins — illustrative concept</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f4f6; color: #202329; font: 15px/1.5 system-ui, sans-serif; }
+main { max-width: 1440px; margin: auto; padding: 42px 44px 28px; }
+.eyebrow { font-size: 12px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; color: #666e7b; }
+h1 { font-size: 32px; letter-spacing: -.035em; line-height: 1.2; font-weight: 650; margin: 10px 0 12px; }
+.intro { color: #626976; margin: 0 0 28px; font-size: 16px; }
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+h2 { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+h2 span { font-size: 11px; vertical-align: 2px; border: 1px solid #d2d6dd; border-radius: 5px; padding: 3px 6px; margin-right: 8px; color: #626976; }
+.window { --bg: #fff; --panel: #f6f7f9; --text: #272b33; --muted: #69717e; --border: #e2e5eb; --selected: #e9edf4; --accent: #3b628d; --user: #edf2f9; height: 528px; overflow: hidden; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 5px 18px #20283a07; }
+.window.skin { --bg: #f6f0e5; --panel: #ede5d5; --text: #332e28; --muted: #756956; --border: #d9ceb9; --selected: #ded1b9; --accent: #745239; --user: #e7dcc8; }
+.bar { height: 42px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--panel); font-size: 12px; color: var(--muted); }
+.dots { display: flex; gap: 5px; }
+.dots i { width: 7px; height: 7px; display: block; background: var(--border); border-radius: 50%; }
+.workspace { display: grid; grid-template-columns: 124px 1fr; height: 486px; }
+.sidebar { padding: 18px 10px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; font-size: 11px; }
+.brand { font-size: 16px; padding: 0 8px 19px; font-weight: 650; }
+.group { color: var(--muted); font-size: 10px; margin: 10px 8px 6px; letter-spacing: .07em; text-transform: uppercase; }
+.nav { padding: 8px; margin-bottom: 3px; border-radius: 5px; }
+.nav.active { background: var(--selected); }
+.settings { margin-top: auto; color: var(--muted); }
+.chat { position: relative; display: flex; flex-direction: column; min-width: 0; isolation: isolate; }
+.chat-title { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.content { padding: 24px 20px; position: relative; flex: 1; font-size: 12px; }
+.user { background: var(--user); padding: 11px 14px; border-radius: 9px; margin-left: 36px; }
+.reply { padding-top: 24px; max-width: 95%; }
+.reply h3 { margin: 0 0 10px; font-size: 15px; font-weight: 620; }
+.reply p { margin: 0 0 14px; }
+.code { background: var(--panel); border: 1px solid var(--border); border-radius: 7px; padding: 11px 13px; font: 11px/1.65 ui-monospace, monospace; }
+.keyword { color: var(--accent); font-weight: 600; }
+.composer { border: 1px solid var(--border); margin: 0 16px 16px; border-radius: 9px; background: var(--bg); padding: 13px; font-size: 11px; color: var(--muted); }
+.composer-bottom { margin-top: 19px; display: flex; justify-content: space-between; font-size: 10px; }
+.send { color: var(--bg); background: var(--accent); border-radius: 4px; padding: 0 5px; }
+/* Original, abstract CSS decoration. No third-party artwork or image files. */
+.skin .chat::before { content: ''; z-index: -1; position: absolute; right: -68px; top: 77px; width: 225px; height: 225px; border: 26px solid #bda48420; border-radius: 50%; }
+.skin .chat::after { content: ''; z-index: -1; position: absolute; right: -50px; bottom: 105px; width: 190px; height: 128px; border-radius: 90% 0 0 0; background: linear-gradient(140deg, #bba5841a, #8c71501c); transform: rotate(-14deg); }
+.appearance { margin-top: 14px; padding: 14px 16px; border: 1px solid #dde0e7; border-radius: 9px; background: #fff; }
+.appearance-title { color: #737b87; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 9px; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; }
+.value { background: #f4f5f7; border: 1px solid #dfe3e9; border-radius: 5px; padding: 5px 9px; font-size: 12px; }
+.value.selected { background: #f2eada; border-color: #cbbb9d; color: #60452e; }
+.caption { font-size: 12px; color: #67707c; margin: 10px 0 0; }
+.notes { display: flex; gap: 24px; margin-top: 26px; padding-top: 18px; border-top: 1px solid #dce0e6; font-size: 12px; color: #626b77; }
+.notes b { color: #343c47; font-weight: 600; }
+.disclaimer { margin-top: 16px; color: #737b87; font-size: 11px; }
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">Pi Web · proposal illustration</div>
+<h1>Personal skins. An unchanged default.</h1>
+<p class="intro">A small, opt-in loading point — with skin packs maintained outside the main project.</p>
+<div class="comparison">
+<section>
+<h2><span>A</span>No external skin enabled</h2>
+<div class="window">
+<div class="bar"><div class="dots"><i></i><i></i><i></i></div><span>Illustrative workspace</span><span>Local</span></div>
+<div class="workspace">
+<aside class="sidebar"><div class="brand">Pi Web</div><div class="nav">+ New session</div><div class="group">Demo project</div><div class="nav active">Example task</div><div class="nav">Getting started</div><div class="group">Files</div><div class="nav">README.md</div><div class="nav">example.ts</div><div class="nav settings">Settings</div></aside>
+<div class="chat"><div class="chat-title">Example task</div><div class="content"><div class="user">Add a greeting function.</div><div class="reply"><h3>A small, readable example</h3><p>The function returns a greeting for the supplied name.</p><div class="code"><span class="keyword">function</span> greet(name: string) {<br>&nbsp; <span class="keyword">return</span> `Hello, ${name}!`;<br>}</div></div></div><div class="composer">Write a message…<div class="composer-bottom"><span>Example model · Read only</span><span class="send">↑</span></div></div></div>
+</div></div>
+<div class="appearance"><div class="appearance-title">Settings → Appearance · proposed control</div><div class="setting-row"><span>External skin</span><span class="value">None ▾</span></div></div>
+<p class="caption">Keep the selected built-in theme. No skin assets are loaded.</p>
+</section>
+<section>
+<h2><span>B</span>User-installed skin selected</h2>
+<div class="window skin">
+<div class="bar"><div class="dots"><i></i><i></i><i></i></div><span>Illustrative workspace</span><span>Local</span></div>
+<div class="workspace">
+<aside class="sidebar"><div class="brand">Pi Web</div><div class="nav">+ New session</div><div class="group">Demo project</div><div class="nav active">Example task</div><div class="nav">Getting started</div><div class="group">Files</div><div class="nav">README.md</div><div class="nav">example.ts</div><div class="nav settings">Settings</div></aside>
+<div class="chat"><div class="chat-title">Example task</div><div class="content"><div class="user">Add a greeting function.</div><div class="reply"><h3>A small, readable example</h3><p>The function returns a greeting for the supplied name.</p><div class="code"><span class="keyword">function</span> greet(name: string) {<br>&nbsp; <span class="keyword">return</span> `Hello, ${name}!`;<br>}</div></div></div><div class="composer">Write a message…<div class="composer-bottom"><span>Example model · Read only</span><span class="send">↑</span></div></div></div>
+</div></div>
+<div class="appearance"><div class="appearance-title">Settings → Appearance · proposed control</div><div class="setting-row"><span>External skin</span><span class="value selected">Paper dusk · local pack ▾</span></div></div>
+<p class="caption">Same content and layout. Selecting None restores the built-in theme.</p>
+</section>
+</div>
+<div class="notes"><span><b>Core:</b> a bounded, declarative loader</span><span><b>Pack:</b> local palette + optional decoration</span><span><b>Not included:</b> scripts, store, toolbar widget</span></div>
+<div class="disclaimer">Static design illustration, not an implemented feature or a screenshot of the upstream application. All content is synthetic; decoration is original CSS. No album covers, lyrics, audio, private sessions or credentials.</div>
+</main>
+</body>
+</html>
